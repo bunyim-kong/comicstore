@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import java.math.BigDecimal;
 
@@ -17,11 +20,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn (name = "category_id")
+    @RestResource (path = "productCategory", rel = "category")
+    private Category category;
+
     @Column(nullable = false, length = 150)
     private String name;
-
-    @Colum()
-    private 
 
     @Column(length = 1000)
     private String description;
@@ -59,39 +64,23 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Category getCategory() {
+        return category;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Boolean getActive() {
         return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 }
