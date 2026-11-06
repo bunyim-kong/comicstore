@@ -20,6 +20,9 @@ public class Product {
     @Column(nullable = false, length = 150)
     private String name;
 
+    @Colum()
+    private 
+
     @Column(length = 1000)
     private String description;
 
